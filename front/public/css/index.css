@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+* {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    cursor: none;
+}
+body {
+    display: flex;
+    background-color: #F3F2B1;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+a {
+    visibility: hidden;
+}
+#cursor {
+    position: absolute;
+    width: 40px;
+    z-index: 100;
+    pointer-events: none;
+}
+#main {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    flex-direction: column;
+    background-image: url(/img/bg.jpg);
+    background-size: cover;
+    font-family: 'Nanum Pen Script', cursive;
+}
+.yellow {
+    color: #F6D13A;
+}
+.red {
+    color: #E26479;
+}
+.blue {
+    color: #78C8DF;
+}
+#title {
+    font-size: 15em;
+    text-shadow: 7px 7px #000;
+    animation-name: shake;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: steps(2, end);
+    animation-play-state: running;
+}
+#start-btn {
+    font-size: 3em;
+    /* transition: all .2s; */
+    animation-name: shake;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: steps(2, end);
+    animation-play-state: running;
+}
+@keyframes shake {
+    from {
+        transform: rotate(2.5deg);
+    }
+    to {
+        transform: rotate(-2.5deg);
+    }
+}
+#start-btn:hover {
+    color: red;
+}
+#camera {
+    position: absolute;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F3F2B1;
+}
+.hidden {
+    visibility: hidden;
+}
+#cam, #canva, #count {
+    position: absolute;
+}
+#count {
+    z-index: 10;
+    font-size: 8rem;
+    color: #fff;
+}
