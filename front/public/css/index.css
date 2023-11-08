@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap');
 * {
     margin: 0px;
     padding: 0px;
@@ -76,22 +77,50 @@ a {
 #start-btn:hover {
     color: red;
 }
-#camera {
-    position: absolute;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #F3F2B1;
-}
 .hidden {
     visibility: hidden;
 }
-#cam, #canva, #count {
+#cam {
     position: absolute;
+    margin-left: 20px;
+}
+#canvas {
+    position: absolute;
+    display: none;
+}
+#camera-container {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    background-color: #F3F2B1;
+}
+#time-container {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #000;
+    border-radius: 40px;
+    background-color: #fff;
+    width: 10vw;
+    height: 20vh;
+    padding: 10px;
+    text-align: center;
+}
+#time-title {
+    font-size: 2rem;
+}
+#time {
+    font-size: 5rem;
 }
 #count {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 2rem;
+    color: #000;
+}
+#text-UI, #camera {
     z-index: 10;
-    font-size: 8rem;
-    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

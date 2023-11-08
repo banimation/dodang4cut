@@ -1,6 +1,6 @@
 const main = document.getElementById("main") as HTMLElement
 
-const camera = document.getElementById("camera") as HTMLElement
+const cameraContainer = document.getElementById("camera-container") as HTMLElement
 const cam = document.getElementById("cam") as HTMLVideoElement
 
 const startBtn = document.getElementById("start-btn") as HTMLElement
@@ -9,9 +9,15 @@ const cursor = document.getElementById("cursor") as HTMLElement
 const canvas = document.getElementById("canvas") as HTMLCanvasElement
 const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
 
-const countText = document.getElementById("count") as HTMLElement
+const time = document.getElementById("time") as HTMLElement
+const count = document.getElementById("count") as HTMLElement
 
-const width = window.innerWidth
+const maxCount = 6
+const maxTime = 1
+let currentCount = 0
+
+
+const width = 1000
 let height: number
 
 let isStreaming = false
@@ -31,6 +37,7 @@ cam.addEventListener("canplay", () => {
         cam.setAttribute("height", String(height))
         canvas.setAttribute("width", String(width))
         canvas.setAttribute("height", String(height))
+        count.innerText = `${currentCount}/${maxCount}`
         isStreaming = true
     }
 })
@@ -53,20 +60,34 @@ const takePicture = () => {
     })
 }
 
+const perform = async () => {
+    let timeRemaining = maxTime
+    for(let i = 0; i < maxCount; i++) {
+        for(let n = 0; n < maxTime + 1; n++) {
+            await new Promise((res, _rej) => {
+                setTimeout(() => {
+                    if(timeRemaining <= 0) {
+                        time.innerText = ""
+                        takePicture()
+                        currentCount += 1
+                        count.innerText = `${currentCount}/${maxCount}`
+                        timeRemaining = maxTime
+                    } else {
+                        time.innerText = String(timeRemaining)
+                        timeRemaining -= 1
+                    }
+                    res(" ")
+                }, 1000)
+            })
+        }
+    }
+    
+}
+
 startBtn.addEventListener('click', () => {
     main.classList.add("hidden")
-    camera.classList.remove("hidden")
-    let count = 3
-    const interval = setInterval(() => {
-        if(count <= 0) {
-            countText.innerText = ""
-            takePicture()
-            clearInterval(interval)
-        } else {
-            countText.innerText = String(count)
-            count -= 1
-        }
-    }, 1000)
+    cameraContainer.classList.remove("hidden")
+    perform()
 })
 window.addEventListener("mousemove", (event) => {
     cursor.style.left = `${event.clientX}px`

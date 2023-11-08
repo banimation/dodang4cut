@@ -14,10 +14,19 @@
         </div>
         <div id="start-btn">start</div>
     </div>
-    <div id="camera" class="hidden">
+    <div id="camera-container" class="hidden">
         <canvas id="canvas"></canvas>
-        <div id="count"></div>
-        <video autoplay="true" id="cam"></video>
+        <div id="camera">
+            <video autoplay="true" id="cam"></video>
+        </div>
+        <div id="text-UI">
+            <div id="time-container">
+                <div id="time-title">남은 시간</div>
+                <div id="time"></div>
+            </div>
+            
+            <div id="count"></div>
+        </div>
     </div>
 </body>
 <script src="/dist/index.js"></script>
