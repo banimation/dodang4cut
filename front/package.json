@@ -1,11 +1,13 @@
 {
   "dependencies": {
+    "merge-images": "^2.0.0",
     "ts-loader": "^9.5.0",
     "typescript": "^5.2.2",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   },
   "devDependencies": {
+    "@types/merge-images": "^1.2.4",
     "@types/node": "^20.8.10"
   }
 }

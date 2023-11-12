@@ -18,6 +18,13 @@ body {
 a {
     visibility: hidden;
 }
+#black {
+    z-index: 20;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+}
 #cursor {
     position: absolute;
     width: 40px;
@@ -103,7 +110,7 @@ a {
     background-color: #fff;
     width: 10vw;
     height: 20vh;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
 }
 #time-title {
@@ -123,4 +130,18 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+#images {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    place-items: center;
+}
+.img {
+    border: solid 2px rgba(0, 0, 0, 0);
+}
+.selected {
+    border: solid 2px red;
 }
