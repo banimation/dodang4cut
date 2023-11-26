@@ -2,7 +2,8 @@ const path = require("path")
 module.exports = {
     mode: "production",
     entry : {
-        index : "./src/index.ts"
+        index : "./src/index.ts",
+        result: "./src/result.ts"
     },
     module: {
         rules: [
@@ -10,6 +11,10 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.node$/,
+                loader: "node-loader",
             },
         ],
     },
@@ -19,5 +24,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "public/dist"),
         filename : '[name]_bundle.js'
-    }
+    },
+    target: ["node"]
 }

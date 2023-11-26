@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "chartjs-node-canvas": "^4.1.6",
     "merge-images": "^2.0.0",
+    "node-loader": "^2.0.0",
+    "sharp": "^0.32.6",
     "ts-loader": "^9.5.0",
     "typescript": "^5.2.2",
     "webpack": "^5.89.0",
@@ -8,6 +11,8 @@
   },
   "devDependencies": {
     "@types/merge-images": "^1.2.4",
-    "@types/node": "^20.8.10"
+    "@types/node": "^20.8.10",
+    "@types/sharp": "^0.32.0",
+    "file-loader": "^6.2.0"
   }
 }

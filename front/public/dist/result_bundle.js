@@ -1,0 +1,1 @@
+(()=>{"use strict";document.getElementById("img"),document.getElementById("canvas").getContext("2d"),fetch("getResult",{method:"POST",headers:{"Content-Type":"application/json"}}).then((e=>{console.log(e)}))})();

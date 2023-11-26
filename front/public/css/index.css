@@ -19,7 +19,7 @@ a {
     visibility: hidden;
 }
 #black {
-    z-index: 20;
+    z-index: 120;
     position: absolute;
     width: 100vw;
     height: 100vh;

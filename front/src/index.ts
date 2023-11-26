@@ -1,5 +1,5 @@
 import mergeImages from "merge-images"
-import * as fs from "node:fs"
+// import sharp from "sharp"
 
 const main = document.getElementById("main") as HTMLElement
 const cameraContainer = document.getElementById("camera-container") as HTMLElement
@@ -75,7 +75,7 @@ const perform = async () => {
                                 takePicture()
                                 blackScreen.classList.add("hidden")
                                 res("")
-                            }, 2000)
+                            }, 1000)
                         })
                         currentCount += 1
                         count.innerText = `${currentCount}/${maxCount}`
@@ -126,21 +126,17 @@ startBtn.addEventListener('click', () => {
 })
 complete.addEventListener("click", () => {
     if(selectedImg.length === 4) {
-        mergeImages([
-            {src: "/frame/frame.png", x: 0, y: 0},
-            {src: `/picture/${selectedImg[0]}.png`, x: 10, y: 50},
-            {src: `/picture/${selectedImg[1]}.png`, x: 10, y: 100},
-            {src: `/picture/${selectedImg[2]}.png`, x: 10, y: 150},
-            {src: `/picture/${selectedImg[3]}.png`, x: 10, y: 200},
-        ]).then((b64) => {
-            console.log(b64)
-            fetch("createResult", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({b64})
-            })
+        fetch("createResult", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({selectedImg})
+        }).then((res) => {
+            if(res) {
+                // location.replace("/result")
+                location.reload()
+            }
         })
     }
 })
