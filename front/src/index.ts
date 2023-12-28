@@ -1,6 +1,4 @@
 import mergeImages from "merge-images"
-// import sharp from "sharp"
-
 const main = document.getElementById("main") as HTMLElement
 const cameraContainer = document.getElementById("camera-container") as HTMLElement
 const cam = document.getElementById("cam") as HTMLVideoElement
@@ -13,8 +11,21 @@ const count = document.getElementById("count") as HTMLElement
 const blackScreen = document.getElementById("black") as HTMLElement
 const images = document.getElementById("images") as HTMLElement
 const complete = document.getElementById("complete") as HTMLElement
+const selectedImages = document.getElementById(`selected-images`)!
+const selectContainer = document.getElementById("select-container")!
+const black = document.getElementById("dark")!
+const white = document.getElementById("white")!
+let frameColor = "black"
+black.addEventListener("click", () => {
+    selectedImages.style.backgroundColor = "#000"
+    frameColor = "black"
+})
+white.addEventListener("click", () => {
+    selectedImages.style.backgroundColor = "#fff"
+    frameColor = "white"
+})
 
-const maxCount = 4
+const maxCount = 6
 const maxTime = 1
 let currentCount = 0
 
@@ -91,6 +102,18 @@ const perform = async () => {
     }
 }
 const selectedImg: Array<number> = []
+const updateSelectedImage = () => {
+    selectedImages.replaceChildren()
+    for(let i = 0; i < 4; i++) {
+        if(selectedImg[i] !== undefined) {
+            console.log("aaa")
+            const img = document.createElement("img") as HTMLImageElement
+            img.src = `/picture/${selectedImg[i]}.png`
+            img.style.width = "90px"
+            selectedImages.append(img)
+        }
+    }
+}
 startBtn.addEventListener('click', () => {
     main.classList.add("hidden")
     cameraContainer.classList.remove("hidden")
@@ -98,13 +121,18 @@ startBtn.addEventListener('click', () => {
         time.innerText = "✔"
         setTimeout(() => {
             cameraContainer.classList.add("hidden")
+            selectContainer.style.zIndex = "1"
             for(let i = 0; i < maxCount; i++) {
+                const imgContainer = document.createElement("div")!
                 const img = document.createElement("img") as HTMLImageElement
+
+                imgContainer.classList.add("img-container")
                 
                 img.style.width = "200px"
                 img.src = `/picture/${i}.png`
                 img.classList.add("img")
-                images.append(img)
+                imgContainer.append(img)
+                images.append(imgContainer)
 
                 img.addEventListener("click", () => {
                     if(!(selectedImg.includes(i))) {
@@ -119,6 +147,7 @@ startBtn.addEventListener('click', () => {
                             img.classList.remove("selected")
                         }
                     }
+                    updateSelectedImage()
                 })
             }
         }, 3000)
@@ -131,7 +160,7 @@ complete.addEventListener("click", () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({selectedImg})
+            body: JSON.stringify({selectedImg, frameColor})
         }).then((res) => {
             if(res) {
                 // location.replace("/result")
